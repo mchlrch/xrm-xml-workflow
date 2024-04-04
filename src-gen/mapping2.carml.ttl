@@ -1,0 +1,38 @@
+PREFIX rr: <http://www.w3.org/ns/r2rml#>
+PREFIX rml: <http://semweb.mmlab.be/ns/rml#>
+PREFIX ql: <http://semweb.mmlab.be/ns/ql#>
+PREFIX carml: <http://carml.taxonic.com/carml/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+<#example2>
+	a rr:TriplesMap;
+	
+	rml:logicalSource [
+		rml:source [
+			a carml:Stream;
+			carml:streamName "stdin"
+		];
+		rml:referenceFormulation ql:JSONPath;
+		rml:iterator "$.entries[*]"
+	];
+	
+	rr:subjectMap [
+		rr:template "{foo}"
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate rdfs:comment;
+		rr:objectMap [
+			rr:template "{foo} {bar}!";
+			rr:termType rr:Literal
+		]
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate rdfs:seeAlso;
+		rr:objectMap [
+			rr:template "https://www.wikidata.org/wiki/{qid}";
+			rr:termType rr:Literal
+		]
+	].
+	

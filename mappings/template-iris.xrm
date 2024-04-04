@@ -1,2 +1,3 @@
 template personIri "http://example.org/character/{0}"
+template someIri "http://data.example.org/some/{0}"
 

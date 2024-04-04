@@ -36,3 +36,27 @@ logical-source PeopleCsvExample {
 		lastname
 		hair
 }
+
+logical-source Example1Json {
+	type json
+	source "stdin" // use stdin if you plan to read from standard inputs, for example with CARML
+	// source "input/example1.json"
+	iterator "$.entries[*]"
+
+	referenceables
+		foo
+		bar
+		entityIri
+}
+
+logical-source Example2Json {
+	type json
+	source "stdin" // use stdin if you plan to read from standard inputs, for example with CARML
+	// source "input/example2.json"
+	iterator "$.entries[*]"
+
+	referenceables
+		foo
+		bar
+		qid
+}

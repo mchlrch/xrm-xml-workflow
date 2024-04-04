@@ -1,0 +1,11 @@
+output carml // choose from carml, rml, r2rml, csvw etc  
+
+map example1 from Example1Json { 
+	subject template someIri with foo;
+
+	properties
+		rdfs.comment template "{0} {1}!" with foo bar as Literal ;
+
+		rdfs.seeAlso from entityIri as IRI ;
+		rdfs.seeAlso from entityIri with datatype xsd.anyURI ;
+}

@@ -1,0 +1,9 @@
+{
+  "entries": [
+    {
+      "foo" : "hello",
+      "bar": "world",
+      "entityIri": "http://www.wikidata.org/entity/Q31465098"
+    }
+  ]
+}

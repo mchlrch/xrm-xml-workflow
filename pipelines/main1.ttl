@@ -1,0 +1,160 @@
+@base <http://example.org/pipeline/>.
+@prefix p: <https://pipeline.described.at/>.
+@prefix code: <https://code.described.at/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+
+#
+# Default variables
+#
+
+<defaultVars>
+  p:variable [ a p:Variable;
+    p:name "ENDPOINT_URL";
+    p:value "http://localhost:3030/data"
+  ], [ a p:Variable;
+    p:name "ENDPOINT_USER";
+    p:value ""
+  ], [ a p:Variable;
+    p:name "ENDPOINT_PASSWORD";
+    p:value ""
+  ], [ a p:Variable;
+    p:name "outputFile";
+    p:value "output/transformed1.nt"
+  ], [ a p:Variable;
+    p:name "destinationGraph";
+    p:value "https://example.org/graph/people"
+  ], [ a p:Variable;
+    p:name "inputFile";
+    p:value "input/example1.json"
+  ], [ a p:Variable;
+    p:name "mappingFile";
+    p:value "src-gen/mapping1.carml.ttl"
+  ], [ a p:Variable;
+    p:name "CARML_SERVICE";
+    p:value "https://carml.zazukoians.org/"
+  ].
+
+#
+# Pipelines
+#
+
+# Reads the input file, converts it through the CARML service, and serializes it into a file
+<toFile> a p:Pipeline;
+  p:variables <defaultVars>;
+  p:steps [
+    p:stepList (
+      <readFile>
+      <carmlService>
+      <serialize>
+      <writeFile>
+    )
+  ].
+
+# Reads the input file, converts it through the CARML service, sets a graph and uploads it into a triplestore.
+<toStore> a p:Pipeline;
+  p:variables <defaultVars>;
+  p:steps [
+    p:stepList (
+      <readFile>
+      <carmlService>
+      <setDestinationGraph>
+      <graphStorePut>
+    )
+  ].
+
+# Reads a input file, sets a graph and uploads it into a triplestore.
+<fileToStore> a p:Pipeline;
+  p:variables <defaultVars>;
+  p:steps [
+    p:stepList (
+      <readFile>
+      <parseN3>
+      <setDestinationGraph>
+      <graphStorePut>
+    )
+  ].
+
+#
+# Steps
+#
+
+<readFile> a p:Step;
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:fs#createReadStream>
+  ];
+  code:arguments ("inputFile"^^p:VariableName).
+
+<parseN3> a p:Step;
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-formats/n3.js#parse>
+  ].
+
+<writeFile> a p:Step;
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:fs#createWriteStream>
+  ];
+  code:arguments ("outputFile"^^p:VariableName).
+
+<readCarmlMappingFile> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:fs#createReadStream>
+  ];
+  code:arguments ("mappingFile"^^p:VariableName).
+
+<carmlService> a p:Step;
+  code:implementedBy [ a code:EcmaScript;
+    code:link <node:barnard59-carml-service>
+  ];
+  code:arguments [
+    code:name "mapping";
+    code:value <carmlMapping>
+  ], [
+    code:name "serviceUrl";
+    code:value "CARML_SERVICE"^^p:VariableName
+  ].
+
+<carmlMapping> a p:Pipeline, p:ReadableObjectMode;
+  p:steps [
+    p:stepList (
+      <readCarmlMappingFile>
+      <parseN3>
+     )
+  ].
+
+#
+# Common Subpipelines & Steps
+#
+
+<flatten> a p:Step;
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-base/flatten.js#default>;
+  ].
+
+<serialize> a p:Step;
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-formats/ntriples.js#serialize>
+  ].
+
+<setDestinationGraph> a p:Step;
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-rdf/setGraph.js#default>
+  ];
+  code:arguments ("destinationGraph"^^p:VariableName).
+
+<graphStorePut> a p:Step;
+  code:implementedBy [ a code:EcmaScriptModule;
+    code:link <node:barnard59-graph-store/put.js#default>
+  ];
+  code:arguments [
+    code:name "endpoint";
+    code:value "ENDPOINT_URL"^^p:VariableName
+  ], [
+    code:name "user";
+    code:value "ENDPOINT_USER"^^p:VariableName
+  ], [
+    code:name "password";
+    code:value "ENDPOINT_PASSWORD"^^p:VariableName
+  ], [
+    code:name "maxQuadsPerRequest";
+    code:value 10000000
+  ].
