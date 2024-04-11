@@ -26,6 +26,7 @@ vocabulary xsd {
 	datatypes
 		integer
 		anyURI
+		date
 }
 
 vocabulary rdfs {
@@ -34,4 +35,14 @@ vocabulary rdfs {
 	properties
 		comment
 		seeAlso
+}
+
+vocabulary eli {
+	prefix "eli" "http://data.europa.eu/eli/ontology#"
+
+	classes
+		LegalResource
+
+	properties
+		date_document
 }

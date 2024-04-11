@@ -60,3 +60,22 @@ logical-source Example2Json {
 		bar
 		qid
 }
+
+logical-source Example3Xml {
+	type xml
+	source "stdin" // use stdin if you plan to read from standard inputs, for example with CARML
+	xml-namespace-extension akomaNtoso
+	iterator "/akn:akomaNtoso/akn:act/akn:meta/akn:identification/akn:FRBRWork"
+
+	referenceables
+		legalResourceIri "concat('http://zrh.ch', akn:FRBRuri/@value)"
+		jurisdiction "tokenize(akn:FRBRuri/@value, '/')[3]"
+		doctype "tokenize(akn:FRBRuri/@value, '/')[4]"
+		docdate "tokenize(akn:FRBRuri/@value, '/')[5]"
+		docnumber "tokenize(akn:FRBRuri/@value, '/')[6]"
+		// date_in_force "akn:FRBRdate[@name=\\\"InForce\\\"]/@date"
+}
+
+xml-namespace-extension akomaNtoso {
+	prefix "akn" "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
+}

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- source: https://github.com/zazuko/reLex-jolux-4-zh/blob/main/input/2024-03-08%20AKN4ZH%20ACT%20A0.xml -->
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://docs.oasis-open.org/legaldocml/ns/akn/3.0 https://docs.oasis-open.org/legaldocml/akn-core/v1.0/os/part2-specs/schemas/akomantoso30.xsd">
+	<act name="Grunderlass" contains="originalVersion"> 
+		<meta>
+			<identification source="#source">
+				<FRBRWork>
+					<FRBRthis value="/akn/CH-ZH/act/2024-02-29/2024-17/main"/> 
+					<FRBRuri value="/akn/CH-ZH/act/2024-02-29/2024-17"/>
+					<FRBRdate date="2024-02-29" name="Beschlussdatum"/> 
+					<FRBRauthor href="#Kantonsrat" as="#author"/> 
+					<FRBRcountry value="#CH-ZH" showAs="CH-ZH"/>
+					<FRBRsubtype value="#Gesetz" showAs="Gesetz"/> 
+					<FRBRnumber value="2024-17"/> 
+				</FRBRWork>
+				
+				<FRBRExpression>
+					<FRBRthis value="/akn/CH-ZH/act/2024-02-29/2024-17/ger@2024-02-29/2024-17/main"/> 
+					<FRBRuri value="/akn/CH-ZH/act/2024-02-29/2024-17/ger@2024-02-29/2024-17"/>
+					<FRBRdate date="2024-02-29" name="Beschlussdatum"/> 
+					<FRBRauthor href="#Amt für XYZ" as="#leadAuthor"/>
+					<FRBRauthor href="#Amt für ABC" as="#author"/> 
+					<FRBRversionNumber value="2024-17"/>
+					<FRBRauthoritative value="true"/> 
+					<FRBRlanguage language="ger"/>
+				</FRBRExpression>
+				
+				<FRBRManifestation>
+					<FRBRthis value="/akn/CH-ZH/act/2024-02-29/2024-17/ger@2024-02-29/2024-17.xml/main"/>
+					<FRBRuri value="/akn/CH-ZH/act/2024-02-29/2024-17/ger@2024-02-29/2024-17.xml"/>
+					<FRBRdate date="2024-03-31" name="generation"/> 
+					<FRBRauthor href="#Publikationen" as="#editor"/>
+					<FRBRformat value="URI" showAs="xml"/>
+				</FRBRManifestation>
+			</identification>
+			
+			<!-- The publication is a part of the meta block and captures the metadata concerning the official publication process. -->			
+			<publication name="Official Journal" date="2024-03-31" showAs="Offizielle Sammlung" number="2024-17"/> 
+				
+			<!-- Nebenänderungen in Grunderlass -->
+			<analysis source="#">
+				<activeModifications>
+										
+					<textualMod eId="amod_1" type="insertion" period="#tmgr_1">
+						<source href="#art_1__heading__mod_1"/> 
+						<destination href="/akn/CH-ZH/act/2009-12-09/65-10/cons/ger@2024-01-07/main#art_1__para_1" pos="before"/> 
+						<new href="#level_I__art_1__heading__mod_1__qstr_1"/> <!-- lokale Referenz zur Änderung -->
+					</textualMod>
+					
+					<textualMod eId="amod_2" type="substitution" period="#tmgr_1">
+						<source href="#art_1__para_1__content__mod_1"/>
+						<destination href="/akn/CH-ZH/act/2009-12-09/65-10/cons/ger@2025-01-01/main#art_1__para_1"/> 
+						<old href="/akn/CH-ZH/act/2009-12-09/65-10/cons/ger@2010-03-01/main#art_1__para_1"/> 
+						<new href="#level_I__art_1__para_1__content__mod_1__qstr_1"/>
+					</textualMod>
+					
+				</activeModifications>
+			</analysis>
+			
+			<temporalData source=""> 
+				<temporalGroup eId="tmpgr_1"> 
+					<timeInterval refersTo="#inforce" start="2024-01-07" end=""/> 
+				</temporalGroup>
+				
+				<temporalGroup eId="tmpgr_2"> 
+					<timeInterval refersTo="#inforce" start="2025-01-01" end=""/> 
+				</temporalGroup>
+			</temporalData>
+			
+			<references source="#source">
+				<activeRef eId="ra_1" href="/akn/CH-ZH/act/2009-12-09/65-10/cons/ger@2024-01-07/main" showAs="Neue konsolidierte Fassung mit den Änderungen aus diesem Erlass"/> 
+				<activeRef eId="ra_2" href="/akn/CH-ZH/act/2009-12-09/65-10/cons/ger@2025-01-01/main" showAs="Neue konsolidierte Fassung mit den Änderungen aus diesem Erlass"/>
+				
+				
+				<TLCPerson href="" showAs=""/>
+				<TLCConcept href="" showAs=""/>
+				<TLCObject href="" showAs=""/>
+				<TLCEvent href="" showAs=""/>
+				<TLCLocation href="" showAs=""/>
+				<TLCProcess href="" showAs=""/>
+				<TLCRole href="" showAs=""/>
+				<TLCTerm href="" showAs=""/>
+			</references>
+			
+			
+		</meta>
+		
+		<preface> <!-- Mehrere möglich, z.B. Mantelerlass -->
+			<p>
+				<docketNumber eId="docketNum_1" title="Orndungsnummer">333.33</docketNumber> <!--Ordnungsnummer (LS-Nummer).-->
+				<docTitle eId="actTitle" title="Erlasstitel">Gesetz über XYZ</docTitle>
+				<shortTitle eId="actTitleShort" title="Kurztitel">XYZ-Gesetz</shortTitle>
+				<abbr eId="actTitleAbbr" title="Abkürzung">XYZG</abbr>
+				<docDate date="2024-02-29">29. Februar 2024</docDate> <!--Beschlussdatum des Grunderlasses. -->
+			</p>
+		</preface>
+		
+			
+		
+		<body>
+		
+			<article></article>
+			
+		</body>
+		
+	</act>
+	
+</akomaNtoso>

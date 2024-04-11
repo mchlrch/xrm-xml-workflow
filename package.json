@@ -9,6 +9,7 @@
     "to-file": "mkdir -p output && barnard59 run -v --pipeline=http://example.org/pipeline/toFile pipelines/main.ttl",
     "to-file1": "mkdir -p output && barnard59 run -v --pipeline=http://example.org/pipeline/toFile pipelines/main1.ttl",
     "to-file2": "mkdir -p output && barnard59 run -v --pipeline=http://example.org/pipeline/toFile pipelines/main2.ttl",
+    "to-file3": "mkdir -p output && barnard59 run -v --pipeline=http://example.org/pipeline/toFile pipelines/main3.ttl",
     "file-to-store": "barnard59 run -v --pipeline=http://example.org/pipeline/fileToStore pipelines/main.ttl --variable=ENDPOINT_URL --variable=ENDPOINT_USER --variable=ENDPOINT_PASSWORD",
     "file-to-store-dev": "barnard59 run -v --pipeline=http://example.org/pipeline/fileToStore pipelines/main.ttl",
     "to-store-dev": "barnard59 run -v --pipeline=http://example.org/pipeline/toStore pipelines/main.ttl",
