@@ -18,7 +18,10 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://data.example.org/some/{foo}"
+		rr:template "http://data.example.org/some/{foo}";
+		rr:graphMap [
+		  rr:constant <http://example.org/graph1>
+		]
 	];
 	
 	rr:predicateObjectMap [

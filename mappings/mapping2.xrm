@@ -5,7 +5,7 @@ map example2 from Example2Json {
 
 	properties
 
-		// TODO: xrm#123
+		// TODO: https://github.com/zazuko/xrm/issues/152
 
 		rdfs.comment template "{0} {1}!" with foo bar as Literal ;
 		//           template "{0} {1}!" with foo bar as Literal with language-tag en ;
