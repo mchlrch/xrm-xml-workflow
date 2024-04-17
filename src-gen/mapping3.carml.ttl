@@ -23,7 +23,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	];
 	
 	rr:subjectMap [
-		rr:template "http://zrh.ch/akn/{tokenize(akn:FRBRuri/@value, '/')[3]}/{tokenize(akn:FRBRuri/@value, '/')[4]}/{tokenize(akn:FRBRuri/@value, '/')[5]}/{tokenize(akn:FRBRuri/@value, '/')[6]}";
+		rml:reference "concat('http://zrh.ch', akn:FRBRuri/@value)";
 		rr:class eli:LegalResource
 	];
 	

@@ -3,9 +3,10 @@ output carml
 template workIri "http://zrh.ch/akn/{0}/{1}/{2}/{3}"
 
 map example3 from Example3Xml {
-	// subject from legalResourceIri as IRI;
-	// u nid so 
-	subject template workIri with jurisdiction doctype docdate docnumber;
+	subject from legalResourceIri;
+	
+	// u nid so ...
+	// subject template workIri with jurisdiction doctype docdate docnumber;
 
 	types
 		eli.LegalResource
