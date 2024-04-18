@@ -19,7 +19,7 @@
     p:value ""
   ], [ a p:Variable;
     p:name "outputFile";
-    p:value "output/transformed1.nt"
+    p:value "output/transformed1.ttl"
   ], [ a p:Variable;
     p:name "destinationGraph";
     p:value "https://example.org/graph/people"
