@@ -1,0 +1,43 @@
+output carml // choose from carml, rml, r2rml, csvw etc  
+
+template professionIri "https://data.example.org/controlled-vocabulary/professions/{0}"
+
+map profession from Example4Json { 
+	subject template professionIri with code;
+
+	types
+		skos.Concept
+
+	properties
+		// skos.inScheme constant vocab.professions;     // TODO: re-usable IRI konstanten
+		skos.inScheme constant "https://data.example.org/controlled-vocabulary/professions";
+		// skos.inScheme template "https://data.example.org/controlled-vocabulary/professions";   // alternativer workaround
+
+		skos.prefLabel from name;
+		skos.notation from code;
+}
+
+map profession_topConcept from Example4Json {
+	// subject constant vocab.professions;     // TODO: re-usable IRI konstanten
+	subject constant "https://data.example.org/controlled-vocabulary/professions";
+
+	properties
+		skos.hasTopConcept template professionIri with code;
+}
+
+
+// Variante, um mehrere Schemes aufzulisten
+vocabulary vocab {
+	prefix "vocab" "https://data.example.org/controlled-vocabulary/"
+
+	// resources
+	// 	professions
+}
+
+// ... oder doch so?
+vocabulary professions {
+	prefix "professions" "https://data.example.org/controlled-vocabulary/professions/"
+
+	// resources
+	// 	scheme "../professions"   // "..": magic-string to traverse up the path, remove the '/' (or '#') from the prefix-iri-value
+}

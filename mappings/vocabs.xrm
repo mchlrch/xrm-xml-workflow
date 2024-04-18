@@ -1,5 +1,6 @@
 language-tags {
-	en de
+	en
+	de
 }
 
 vocabulary ex {
@@ -46,3 +47,19 @@ vocabulary eli {
 	properties
 		date_document
 }
+
+vocabulary skos {
+	prefix "skos" "http://www.w3.org/2004/02/skos/core#"
+
+	classes
+		ConceptScheme
+		Concept
+
+	properties
+		hasTopConcept
+		inScheme
+		broader
+		notation
+		prefLabel
+}
+

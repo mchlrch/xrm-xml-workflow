@@ -1,0 +1,12 @@
+{
+  "professions": [
+    {
+      "code" : "620",
+      "name": "Farmer"
+    },
+    {
+      "code" : "820",
+      "name": "Freelance Journalist"
+    }
+  ]
+}

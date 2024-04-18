@@ -1,0 +1,67 @@
+PREFIX rr: <http://www.w3.org/ns/r2rml#>
+PREFIX rml: <http://semweb.mmlab.be/ns/rml#>
+PREFIX ql: <http://semweb.mmlab.be/ns/ql#>
+PREFIX carml: <http://carml.taxonic.com/carml/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+<#profession>
+	a rr:TriplesMap;
+	
+	rml:logicalSource [
+		rml:source [
+			a carml:Stream;
+			carml:streamName "stdin"
+		];
+		rml:referenceFormulation ql:JSONPath;
+		rml:iterator "$.professions[*]"
+	];
+	
+	rr:subjectMap [
+		rr:template "https://data.example.org/controlled-vocabulary/professions/{code}";
+		rr:class skos:Concept
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate skos:inScheme;
+		rr:objectMap [
+			rr:constant <https://data.example.org/controlled-vocabulary/professions>
+		]
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate skos:prefLabel;
+		rr:objectMap [
+			rml:reference "name"
+		]
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate skos:notation;
+		rr:objectMap [
+			rml:reference "code"
+		]
+	].
+	
+<#profession_topConcept>
+	a rr:TriplesMap;
+	
+	rml:logicalSource [
+		rml:source [
+			a carml:Stream;
+			carml:streamName "stdin"
+		];
+		rml:referenceFormulation ql:JSONPath;
+		rml:iterator "$.professions[*]"
+	];
+	
+	rr:subjectMap [
+		rr:constant <https://data.example.org/controlled-vocabulary/professions>
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate skos:hasTopConcept;
+		rr:objectMap [
+			rr:template "https://data.example.org/controlled-vocabulary/professions/{code}"
+		]
+	].
+	

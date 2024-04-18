@@ -79,3 +79,14 @@ logical-source Example3Xml {
 xml-namespace-extension akomaNtoso {
 	prefix "akn" "http://docs.oasis-open.org/legaldocml/ns/akn/3.0"
 }
+
+
+logical-source Example4Json {
+	type json
+	source "stdin"
+	iterator "$.professions[*]"
+
+	referenceables
+		code
+		name
+}
